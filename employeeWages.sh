@@ -2,11 +2,22 @@
 
 echo "Welcome To Employee Wage Computation Program"
 
-Attendence=$((RANDOM % 2))
+#Declaration of contants and variables
 
-if [[ $Attendence -eq 1 ]]
+WagePerHour=20;
+FullDayHour=8;
+Present=1;
+
+CheckAttendance=$((RANDOM%2));
+
+if [ $CheckAttendance -eq $Present ]
 then
-	echo "Present"
+		echo "Employee is Present"
+		employeeDailyWage=$((WagePerHour*FullDayHour))
+		echo $employeeDailyWage
+
 else
-	echo "Absent"
+		echo "Employee is Absent"
+		employeeDailyWage=0;
+
 fi
