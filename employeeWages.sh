@@ -10,16 +10,16 @@ PartTimePresent=2;
 
 CheckAttendance=$((RANDOM%3));
 
-if [ $CheckAttendance -eq $Present ]
-then
-	EmpHour=8;
-
-elif [ $CheckAttendance -eq $PartTimePresent ]
-then
-	 EmpHour=4;
-
-else
-	EmpHour=0;
-fi
+case $Checkattendance in
+	$Present)
+		EmpHour=8;
+		;;
+	$PartTimePresent)
+		EmpHour=4;
+		;;
+	*)
+		EmpHour=0;
+		;;
+esac
 
 employeeDailyWage=$((EmpHour*WagePerHour));
