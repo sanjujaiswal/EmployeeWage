@@ -2,41 +2,44 @@
 
 echo "Welcome To Employee Wage Computation Program"
 
-#Declaration of contants and variables
-
+#Declaration of contants
 WagePerHour=20;
 DayInMonth=20;
-PartTimePresent=2;
-Present=1;
 
+#Declaration of variables
+Present=1;
+PartTimePresent=2;
 EmpMonthWage=0;
+EmpHour=0;
 Days=0;
 Hours=0;
 
-while [[ $Days -ne 20 && $Hours -le 100 ]]
-do
-	CheckAttendance=$((RANDOM%3));
-
-case $CheckAttendance in
-
+function getWorkHr(){
+	case $1 in
 		$Present)
 			EmpHour=8;
-			Hours=$((Hours+$EmpHour))
+			echo $EmpHour;
 			;;
-
 		$PartTimePresent)
 			EmpHour=4;
-			Hours=$((Hours+$EmpHour))
+			echo $EmpHour;
 			;;
 		*)
 			EmpHour=0;
+			echo $EmpHour;
 			;;
-
 	esac
+}
 
-	((Days++))
-	DailyWage=$((EmpHour*WagePerHour))
 
-	EmpMonthWage=$((EmpHour*WagePerHour+EmpMonthWage))
+while [[ $Days -ne 20 && $Hours -le 100 ]]
+do
+		CheckAttendance=$((RANDOM%3));
+		EmpHour=$( getWorkHr $CheckAttendance )
+		Hours=$((Hours+$EmpHour))
+		((Days++))
+		DailyWage=$((EmpHour*WagePerHour))
+		EmpMonthWage=$((DailyWage+EmpMonthWage))
 
 done
+
