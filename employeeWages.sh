@@ -37,12 +37,13 @@ do
 		CheckAttendance=$((RANDOM%3));
 		EmpHour=$( getWorkHr $CheckAttendance )
 		Hours=$((Hours+$EmpHour))
-		((Days++))
+
 		DailyWage=$((EmpHour*WagePerHour))
 		DailyWage[$Days]=$DailyWage;
+		((Days++))
 
 		EmpMonthWage=$((DailyWage+EmpMonthWage))
 
 done
 
-echo "${DailyWage[@]}"
+echo -e "${!DailyWage[@]} :\n ${DailyWage[@]}"
