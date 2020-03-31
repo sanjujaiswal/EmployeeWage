@@ -39,7 +39,10 @@ do
 		Hours=$((Hours+$EmpHour))
 		((Days++))
 		DailyWage=$((EmpHour*WagePerHour))
+		DailyWage[$Days]=$DailyWage;
+
 		EmpMonthWage=$((DailyWage+EmpMonthWage))
 
 done
 
+echo "${DailyWage[@]}"
